@@ -3,7 +3,7 @@
     <header class="header">
       <div class="back iconfont">&#xe624;</div>
       <div class="search"><a href="javascript:;">输入城市/景点/游玩主题</a></div>
-      <div class="city">北京</div>
+      <router-link :to='cityPath'><div class="city">{{city}}</div></router-link>
     </header>
 
     <swiper :options="Option" >
@@ -89,6 +89,7 @@ export default {
       advert: [],
       place: [],
       week: [],
+      cityPath: '/city/乌鲁木齐',
       number: 8,
       Option: {
         pagination: '.swiper-pagination',
@@ -107,6 +108,9 @@ export default {
         pages[page].push(value)
       })
       return pages
+    },
+    city () {
+      return this.cityPath.substring(this.cityPath.lastIndexOf('/') + 1)
     }
   },
   methods: {
@@ -138,6 +142,9 @@ export default {
   	background: #05bad5;
   	color: #fff;
     height: 0.88rem;
+  }
+  .header a {
+    color: #fff;
   }
   .back{
   	width: .64rem;
