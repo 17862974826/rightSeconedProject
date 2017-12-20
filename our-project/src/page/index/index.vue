@@ -15,18 +15,20 @@
       <div class="swiper-pagination"  slot="pagination"></div>
     </swiper>
 
-    <swiper :options="Option">
-      <swiper-slide v-for="(page, index) in page" :key="index" class="content">
-        <div class="icon_wrap" v-for="item in page" :key="item.id">
-          <div class="icon">
-            <img :src="item.imgUrl">
+    <div>
+      <swiper>
+        <swiper-slide v-for="(page, index) in page" :key="index" class="content">
+          <div class="icon_wrap" v-for="item in page" :key="item.id">
+          <router-link :to="'/oneDayTour?id='+item.id">
+            <div class="icon">
+              <img :src="item.imgUrl">
+            </div>
+            <p class="dev">{{item.des}}</p>
+          </router-link>
           </div>
-          <p class="dev">{{item.des}}</p>
-        </div>
-      </swiper-slide>
-      <div class="swiper-pagination"  slot="pagination"></div>
-    </swiper>
-
+        </swiper-slide>
+      </swiper>
+    </div>
     <ul class="around">
       <li v-for="(item, index) in around" class="around_item" :key="index"><a href="javasctipt:;">{{item}}</a></li>
     </ul>
@@ -58,7 +60,7 @@
          </a> 
         </div>
       </div>
-      <div class="most"><a href="javasctipt:;">查看所有商品</a></div>
+      <div class="most"><a href="">查看所有商品</a></div>
     </div>
 
     <div class="week">
@@ -91,6 +93,7 @@ export default {
       week: [],
       number: 8,
       Option: {
+        autoplay: 10000,
         pagination: '.swiper-pagination',
         loop: true
       }
@@ -115,6 +118,7 @@ export default {
     },
     handleGetSucc (res) {
       const body = res.body
+      console.log(body)
       if (body && body.data && body.data.swiper) {
         this.bannerInfo = body.data.swiper
         this.iconInfo = body.data.icons
