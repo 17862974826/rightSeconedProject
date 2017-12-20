@@ -30,7 +30,6 @@ export default {
     },
     handleGetSucc (res) {
       const body = res.body
-      console.log(body)
       if (body && body.data) {
         this.myjourney = body.data.myjourney
       }
