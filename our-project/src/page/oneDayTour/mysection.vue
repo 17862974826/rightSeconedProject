@@ -42,11 +42,6 @@
 	  	<p>不错，挺靠谱的，服务周到</p>
 	  </div>
 	</div>
-	<div class="travel-costs">
-	  <div class="travel-costs-left">行程介绍</div>
-	  <div class="travel-costs-center">费用介绍</div>
-	  <div class="travel-costs-right">使用说明</div>
-	</div> 
   </div>
 </template>
 <script>
@@ -209,22 +204,5 @@ export default {
   .commentator p {	
   	font-size: 0.24rem;
 	  color: #212121;
-  }
-  .travel-costs {
-	  height: 0.86rem;
-	  width: 100%;
-	  position: relative;
-  }
-  .travel-costs>div {
-	  font-size: 0.26rem;
-	  font-weight: 900;
-	  width: 33.3%;
-	  text-align: center;
-	  padding:0.26rem 0;
-	  float: left;
-	  background: #fff;
-  }
-  .travel-costs>div:first-child {
-    color: #65bed1;
   }
 </style>

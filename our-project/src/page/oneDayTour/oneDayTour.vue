@@ -5,8 +5,17 @@
   	  <div class="icon iconfont" >&#xe624;返回</div>
   	  <div class="bank">天安门故宫珍宝馆+八达岭+颐和园+恭王府+联票无线耳麦人工讲解</div>
   	</div>  
-  <div v-for="item in bannerInfo" :key="item.id">
+  
   <my-section></my-section>
+
+  <div class="detail-tab-group">
+      <div class="choose-tab"  ref="tab" >
+        <div class="tab-item" data-id="timelineGroup" >行程介绍</div>
+        <div class="tab-item" data-id="costGroup" >费用说明</div>
+        <div class="tab-item" data-id="instructionGroup">使用说明</div>
+      </div>
+  </div>
+ <div v-for="item in bannerInfo" :key="item.id">
 	<main>
     <div class="my-journey">
       <div class="my-journey-header" >
@@ -37,7 +46,6 @@
       查看详细产品介绍<span class="iconfont">F</span>
        </div>
       </div>
-      <CostGroup></CostGroup>
     </div>	
   </main> 
  </div>
@@ -57,12 +65,10 @@
 <script>
 import MyRole from './myjourney.vue'
 import MySection from './mysection.vue'
-import CostGroup from './costGroup.vue'
 export default {
   components: {
     MyRole,
-    MySection,
-    CostGroup
+    MySection
   },
   data () {
     return {
@@ -76,7 +82,6 @@ export default {
     },
     handleGetSucc (res) {
       const body = res.body
-      console.log(body)
       if (body && body.data) {
         this.bannerInfo = body.data.banner
       }
@@ -87,6 +92,13 @@ export default {
         this.$refs.scrollEvent.style.display = 'block'
       } else {
         this.$refs.scrollEvent.style.display = 'none'
+      }
+      if (scroll > 400) {
+        this.$refs.tab.style.position = 'fixed'
+        this.$refs.tab.style.top = '0.88rem'
+      } else {
+        this.$refs.tab.style.position = 'relative'
+        this.$refs.tab.style.top = 0
       }
     }
   },
@@ -131,6 +143,31 @@ export default {
   	white-space: nowrap;
   	overflow: hidden;
   	text-overflow: ellipsis;
+  }
+  .detail-tab-group {
+    margin-top: .2rem;
+    padding: .01rem 0;
+    min-height: .6rem;
+    background-color: #fff;
+  }
+  .choose-tab {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    z-index: 99;
+    overflow: hidden;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd
+  }
+  .tab-item {
+    display: block;
+    height: .4rem;
+    width:33%;
+    padding: .2rem 0;
+    color: #616161;
+    font-size: .28rem;
+    line-height: .4rem;
+    text-align: center;
   }
   main {
 	  flex: 1;
