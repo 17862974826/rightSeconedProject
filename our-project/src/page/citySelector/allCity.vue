@@ -16,8 +16,11 @@
     export default {
       props: ['allCity'],
       mounted () {
-        this.$refs.word.addEventListener('click', (e) => {
+        this.$refs.word.addEventListener('touchstart', (e) => {
           this.handleClick(e.target.innerHTML)
+          console.log(this.$refs.word)
+          this.$refs.word.addEventListener('touchmove', (e) => {
+          })
           e.preventDefault()
         })
       },
