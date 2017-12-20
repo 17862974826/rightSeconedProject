@@ -1,5 +1,6 @@
 <template>
   <div>
+
  	<div class="head_wrap">
 	    <header>
 	     	<router-link to="/"><a href='javascript:;' class='iconfont back'>&#xe624;</a></router-link>
@@ -16,25 +17,26 @@
 	    	<span class="search_info" v-show="info">输入城市名或者拼音</span>
 	    </div>
 	</div>
-
-	<div class="content_wrap">
-		<div class="my_position">
-			<h2>您的位置</h2>
-		</div>
-		<div class="position">
-			<div class="position_name">{{myCity}}</div>
-		</div>
-		<div class="hot_cityWrap">
-			<div class="hot_city">
-				<h2>热门城市</h2>
+	<div class="">
+		<div class="content_wrap">
+			<div class="my_position">
+				<h2>您的位置</h2>
 			</div>
-			<div class="city_title">
-				<div class="city" v-for="item in hotCity">{{item.name}}</div>
+			<div class="position">
+				<div class="position_name">{{myCity}}</div>
+			</div>
+			<div class="hot_cityWrap">
+				<div class="hot_city">
+					<h2>热门城市</h2>
+				</div>
+				<div class="city_title">
+					<div class="city" v-for="item in hotCity">{{item.name}}</div>
+				</div>
 			</div>
 		</div>
+		<all-city :allCity='allCity'></all-city>
 	</div>
 
-	<all-city :allCity='allCity'></all-city>
   </div>
 </template>
 
@@ -77,11 +79,13 @@ export default {
         this.seaActive = false
         this.hotCity = this.chinaHotCity
         this.allCity = this.chinaAllCity
+        document.documentElement.scrollTop = 0
       } else {
         this.cnyActive = false
         this.seaActive = true
         this.hotCity = this.overseaHotCity
         this.allCity = this.seaoverAllCity
+        document.documentElement.scrollTop = 0
       }
     },
     handleSearchClick (e) {
