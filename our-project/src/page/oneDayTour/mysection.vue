@@ -3,7 +3,7 @@
   <div v-for="item in bannerInfo" :key="item.id">
     <section>
     <div class="banner">  
-    <router-link :to="'/hotDetail'">  
+    <router-link :to="'/detail'">  
     <div class="proto-icon iconfont">&#xe624;</div>
     </router-link>
     <div class="mp-imgavatar">
