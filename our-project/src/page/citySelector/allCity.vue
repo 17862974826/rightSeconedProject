@@ -3,7 +3,7 @@
 		<div class="part_city" v-for="len in allCity">
 			<h2 class="classify" :ref="len.classify">{{len.classify}}</h2>
 			<ul class="city_list">
-				<li v-for="item in len.cityName" :key="item.id">{{item.name}}</li>
+				<li v-for="(item, index) in len.cityName" :key="index">{{item.name}}</li>
 			</ul>
 		</div>
 		<div class="select_case" ref='word'>
@@ -16,10 +16,16 @@
     export default {
       props: ['allCity'],
       mounted () {
-        this.$refs.word.addEventListener('touchstart', (e) => {
+        const touchArea = this.$refs.word
+        touchArea.addEventListener('touchstart', (e) => {
           this.handleClick(e.target.innerHTML)
-          console.log(this.$refs.word)
-          this.$refs.word.addEventListener('touchmove', (e) => {
+          touchArea.addEventListener('touchmove', (e) => {
+            if (e.touches[0].clientY > touchArea.offsetTop + touchArea.offsetHeight - 1 || e.touches[0].clientY < touchArea.offsetTop) {
+              return false
+            } else {
+              let num = ~~((e.touches[0].clientY - touchArea.offsetTop) / this.wordSpace)
+              this.numConverWord(num)
+            }
           })
           e.preventDefault()
         })
@@ -27,15 +33,20 @@
       name: 'allCity',
       data () {
         return {
-          distanct: 44
+          headerHeight: 44,
+          wordSpace: 17
         }
       },
       computed: {},
       methods: {
         handleClick (num) {
           if (num) {
-            document.documentElement.scrollTop = this.$refs[num][0].offsetTop - this.distanct
+            document.documentElement.scrollTop = this.$refs[num][0].offsetTop - this.headerHeight
           }
+        },
+        numConverWord (num) {
+          const word = (num + 10).toString(36).toUpperCase()
+          this.handleClick(word)
         }
       }
     }
@@ -82,5 +93,8 @@
 		top: 1.6rem;
 		font-size: 0.18rem;
 		color: #73c5c4;
+	}
+	.select_case > span {
+		padding: 0.05rem;
 	}
 </style>

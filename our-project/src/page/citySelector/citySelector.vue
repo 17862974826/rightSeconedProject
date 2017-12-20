@@ -1,9 +1,9 @@
 <template>
   <div>
-
+	<search-result v-show="showResult" :findCitySucc='findCitySucc'></search-result>
  	<div class="head_wrap">
 	    <header>
-	     	<router-link to="/"><a href='javascript:;' class='iconfont back'>&#xe624;</a></router-link>
+	     	<router-link to="/"><a href='javascript:;' class='iconfont back' @click="handleBackBtnClick">&#xe624;</a></router-link>
 	     	<div class='place_wrap'>
 	     		<div class='select_city' @click='handleCitySelectClick($event)'>
 	     			<span class='country' :class='[cnyActive ? "active" : ""
@@ -13,7 +13,7 @@
 	     	</div>
 	    </header>
 	    <div class="search_wrap" @click="handleSearchClick($event)">
-	    	<input type="text" class="search" ref='search'/>
+	    	<input type="text" class="search" ref='search' @keyup='handleWriteClick'/>
 	    	<span class="search_info" v-show="info">输入城市名或者拼音</span>
 	    </div>
 	</div>
@@ -42,6 +42,7 @@
 
 <script>
 import allCity from './allCity'
+import searchResult from './searchResult'
 
 export default {
   name: 'city',
@@ -67,7 +68,9 @@ export default {
       seaoverAllCity: {},
       hotCity: [],
       allCity: {},
-      info: true
+      findCitySucc: [],
+      info: true,
+      showResult: false
     }
   },
   methods: {
@@ -80,12 +83,14 @@ export default {
         this.hotCity = this.chinaHotCity
         this.allCity = this.chinaAllCity
         document.documentElement.scrollTop = 0
+        this.$refs.search.value = ''
       } else {
         this.cnyActive = false
         this.seaActive = true
         this.hotCity = this.overseaHotCity
         this.allCity = this.seaoverAllCity
         document.documentElement.scrollTop = 0
+        this.$refs.search.value = ''
       }
     },
     handleSearchClick (e) {
@@ -107,12 +112,43 @@ export default {
         this.seaoverAllCity = data.seaoverAllCity
         this.allCity = this.chinaAllCity
       }
+    },
+    handleBackBtnClick () {
+      document.documentElement.scrollTop = 0
+      this.showResult = false
+      this.$refs.search.value = ''
+    },
+    handleWriteClick () {
+      let value = this.$refs.search.value
+      if (this.hotCity === this.chinaHotCity) {
+        this.findCity(value, this.chinaAllCity)
+      } else {
+        this.findCity(value, this.seaoverAllCity)
+      }
+    },
+    findCity (value, city) {
+      this.showResult = true
+      this.findCitySucc.splice(0)
+      city.forEach((val) => {
+        let cityName = val.cityName
+        cityName.forEach((val) => {
+          if (val.name.indexOf(value) !== -1 && value !== '') {
+            this.findCitySucc.push(val.name)
+          } else if (value === '') {
+            this.showResult = false
+          }
+        })
+      })
+      if (this.findCitySucc.length === 0) {
+        this.findCitySucc.push('无搜索匹配内容')
+      }
     }
   },
   computed: {
   },
   components: {
-    allCity
+    allCity,
+    searchResult
   }
 }
 </script>
@@ -177,6 +213,9 @@ header {
 	height: 0.72rem;
 	width: 100%;
 	margin-top: 0.88rem;
+	position: absolute;
+	z-index: 15;
+	background: #00afc7;
 }
 .search {
 	width: 95%;
