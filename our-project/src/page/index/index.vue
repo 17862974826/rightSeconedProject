@@ -18,10 +18,12 @@
     <swiper :options="Option">
       <swiper-slide v-for="(page, index) in page" :key="index" class="content">
         <div class="icon_wrap" v-for="item in page" :key="item.id">
-          <div class="icon">
-            <img :src="item.imgUrl">
-          </div>
-          <p class="dev">{{item.des}}</p>
+          <router-link :to="'./iconDetail/' + item.id">
+            <div class="icon">
+              <img :src="item.imgUrl">
+            </div>
+            <p class="dev">{{item.des}}</p>
+          </router-link>
         </div>
       </swiper-slide>
       <div class="swiper-pagination"  slot="pagination"></div>
