@@ -13,7 +13,7 @@
 	     	</div>
 	    </header>
 	    <div class="search_wrap" @click="handleSearchClick($event)">
-	    	<input type="text" class="search" ref='search' @keyup='handleWriteClick'/>
+	    	<input type="text" class="search" ref='search' @input='handleWriteClick'/>
 	    	<span class="search_info" v-show="info">输入城市名或者拼音</span>
 	    </div>
 	</div>
