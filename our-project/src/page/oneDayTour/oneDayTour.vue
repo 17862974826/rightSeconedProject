@@ -2,7 +2,9 @@
   <div>
    
   	<div class="qunatop" ref="scrollEvent">
+    <router-link :to="'/hotDetail'"> 
   	  <div class="icon iconfont" >&#xe624;返回</div>
+    </router-link>
   	  <div class="bank">天安门故宫珍宝馆+八达岭+颐和园+恭王府+联票无线耳麦人工讲解</div>
   	</div>  
   
@@ -54,9 +56,13 @@
         <i class=" iconfont">&#xe624;</i>
         <b>咨询</b>
       </div>
+      
       <div class="immediately">
+      <router-link :to="'/skiseason'">
         <a href="">立即购票</a>
+        </router-link>
       </div>
+      
       <div>    
       </div>
     </footer>
@@ -107,6 +113,9 @@ export default {
   },
   created () {
     this.getData()
+  },
+  beforeDestroy () {
+    window.removeEventListener('scroll', this.menu, false)
   }
 }
 </script>

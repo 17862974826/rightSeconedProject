@@ -19,7 +19,7 @@
       <swiper>
         <swiper-slide v-for="(page, index) in page" :key="index" class="content">
           <div class="icon_wrap" v-for="item in page" :key="item.id">
-          <router-link :to="'/oneDayTour?id='+item.id">
+          <router-link :to="'/oneDayTour'">
             <div class="icon">
               <img :src="item.imgUrl">
             </div>

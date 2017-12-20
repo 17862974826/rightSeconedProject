@@ -2,8 +2,10 @@
 <div>
   <div v-for="item in bannerInfo" :key="item.id">
     <section>
-    <div class="banner">    
+    <div class="banner">  
+    <router-link :to="'/hotDetail'">  
     <div class="proto-icon iconfont">&#xe624;</div>
+    </router-link>
     <div class="mp-imgavatar">
       <img :src="item.imgUrl" alt="item.dev">
     </div>
@@ -57,7 +59,6 @@ export default {
     },
     handleGetSucc (res) {
       const body = res.body
-      console.log(body)
       if (body && body.data) {
         this.bannerInfo = body.data.banner
       }
