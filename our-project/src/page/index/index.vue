@@ -43,7 +43,8 @@
       <h2>热销推荐</h2>
       <div class="place">
         <div class="place_item" v-for="item in place" :key='item.id'>
-        <a href="javascript:;" class="place_wrap">
+        <router-link :to="'./detail/id' + item.id">
+          <a href="javascript:;" class="place_wrap">
           <div class="img_wrap">
             <img :src="item.imgUrl">
           </div>
@@ -56,6 +57,7 @@
             </div>
           </div>
          </a> 
+        </router-link> 
         </div>
       </div>
       <div class="most"><a href="javasctipt:;">查看所有商品</a></div>
