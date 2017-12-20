@@ -4,9 +4,11 @@
 			<div class="particulars-list">
 				<img :src="items.imgUrl" class="particulars-img">
 			</div>
+			<router-link :to="'/'">
 			<div class="back">
 				<i class="backbefore iconfont">&#xe624;</i>
 			</div>
+			</router-link>
 			<p class="particulars-title">{{items.title}}</p>
 			<div class="particulars-picture">
 				<i class="picture-icon iconfont">&#xe639;</i>

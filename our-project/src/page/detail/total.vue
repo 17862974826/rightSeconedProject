@@ -36,7 +36,10 @@
 						&yen;<em class="examine-num">{{item.price}}</em>
 						<span class="examine-over">起</span>
 					</div>
-					<span class="examine-message">查看</span>
+					<router-link :to="'/oneDayTour?id='+item.id">
+						<span class="examine-message">查看</span>
+					</router-link>
+					
 			  </div>
 				</div>
 			</div>
