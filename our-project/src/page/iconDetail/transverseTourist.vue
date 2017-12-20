@@ -31,10 +31,10 @@
       setTimeout(() => {
         this.getWidth()
       }, 500)
-      window.addEventListener('scroll', this.handleScroll.bind(this))
+      window.addEventListener('scroll', this.handleScroll)
     },
     destroyed () {
-      window.removeEventListener('scroll')
+      window.removeEventListener('scroll', this.handleScroll)
     },
     watch: {
       scrollWidth () {

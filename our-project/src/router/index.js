@@ -13,7 +13,7 @@ export default new Router({
       component: index
     }, {
       path: '/iconDetail/:id',
-      name: '/oneDayTour',
+      name: 'oneDayTour',
       component: OneDayTour
     }
   ]
