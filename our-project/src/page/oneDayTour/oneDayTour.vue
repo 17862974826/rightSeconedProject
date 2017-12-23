@@ -226,6 +226,7 @@ export default {
   footer {
     width: 100%;
     height: 0.96rem;
+    z-index: 1;
     position:fixed;
     bottom: 0;
     background: #f19d38;
