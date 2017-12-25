@@ -39,11 +39,6 @@
         data: e.target.getAttribute('data-id')
       })
     }
-  },
-  watch: {
-  	listInfo () {
-  		console.log(123)
-  	}
   }
 }
 </script>

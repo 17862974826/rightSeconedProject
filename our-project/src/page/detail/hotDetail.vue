@@ -30,6 +30,7 @@ import totalRouter from './total'
 import ticketRouter from './ticket'
 import commentRouter from './comment'
 import residueRouter from './residue'
+
 export default {
   name: 'Detail',
   components: {
@@ -61,15 +62,15 @@ export default {
       const body = res.body
       if (body && body.data && body.data.recommend) {
         this.recommendInfo = body.data.recommend
-        this.listInfo = body.data.list
         this.tourismInfo = body.data.tourismTheme
         this.headerInfo = body.data.headerCon
         this.addressInfo = body.data.detailAddress
         this.userInfo = body.data.user
         this.residueInfo = body.data.residue
         this.deepCopy(this.listInfo1, body.data.list)
-        this.deepCopy(this.listInfo2, body.data.list)
+        this.listInfo = body.data.list
         this.getShowTicket()
+
       }
     },
     windowScroll () {
@@ -101,19 +102,15 @@ export default {
           arr[i] = brr[i]
         }
       }
+      return arr
     },
     handleClick (res) {
-      this.listInfo1 = ''
-      console.log(this.listInfo)
-      this.deepCopy(this.listInfo1, this.listInfo2)
-      console.log(this.listInfo2)
-      this.listInfo1.forEach((val, index) => {
+      this.listInfo = this.deepCopy([], this.listInfo1)
+      this.listInfo.forEach((val, index) => {
         if (index != res.data) {
           val.listdetail.splice(2)
         }
       })
-      this.listInfo = this.listInfo1
-      console.log(this.listInfo)
     }
   },
   created () {
