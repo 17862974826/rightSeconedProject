@@ -2,7 +2,7 @@
   <div>
    
   	<div class="qunatop" ref="scrollEvent">
-    <router-link :to="'/hotDetail'"> 
+    <router-link :to="'/detail'"> 
   	  <div class="icon iconfont" >&#xe624;返回</div>
     </router-link>
   	  <div class="bank">天安门故宫珍宝馆+八达岭+颐和园+恭王府+联票无线耳麦人工讲解</div>
@@ -252,6 +252,7 @@ export default {
   }
   .immediately {
     width: 100%;
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
