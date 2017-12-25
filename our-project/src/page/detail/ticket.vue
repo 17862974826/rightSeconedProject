@@ -1,11 +1,11 @@
 <template>
-	<div>
-		<div class="ticket" v-for="item in listInfo" :key="item.id">
+	<div  ref="ticketCon">
+		<div class="ticket" v-for="(item, index) in listInfo" :key="item.id">
 			<div class="adult-ticket border-bottom">
 				<i class="adult-icon iconfont">&#xe6a5;</i>
 				<h2 class="adult-ticket-con">{{item.title}}</h2>
 			</div>
-			<div class="ticket-morning-shows border-bottom" v-for="list in item.listdetail" :key="list.id">
+			<div class="ticket-morning-shows border-bottom" v-for="list in item.listdetail" :key="list.id" ref="ticketList">
 				<div class="ticket-morning">{{list.title}}
 					<span class="ticket-evidence">{{list.hint}}</span>
 				</div>
@@ -17,19 +17,35 @@
 					<i class="shrink-icon iconfont">&#xe62d;</i>
 				</div>
 			</div>
-			<div class="ticket-morning-shows border-bottom">
-				<span class="check-ticket">{{item.titled}}</span>
+			<div class="ticket-morning-shows border-bottom" @click="handleClick" :data-id='index'>
+				<span class="check-ticket" :data-id='index'>{{item.titled}}</span>
 				<i class="check-product iconfont">&#xe62d;</i>
 			</div>
 			 <div class="ticket-show"></div>	
 		</div>
-	</div>
+		</div>
 </template>
 
 <script>
 	export default {
-  props: ['listInfo']
-	}
+  props: ['listInfo'],
+  data () {
+    return {
+    }
+  },
+  methods: {
+    handleClick (e) {
+      this.$emit('change', {
+        data: e.target.getAttribute('data-id')
+      })
+    }
+  },
+  watch: {
+  	listInfo () {
+  		console.log(123)
+  	}
+  }
+}
 </script>
 
 <style scoped>

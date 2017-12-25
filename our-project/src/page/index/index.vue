@@ -32,18 +32,20 @@
     </ul>
 
     <ul class="advert">
-      <li class='advert_item' v-for="item in advert" :key="item.id">
-        <a href="javascrip:;" class="advert-border">
-          <img :src="item.imgUrl" />
-        </a>
-      </li>
+        <li class='advert_item' v-for="item in advert" :key="item.id">
+        <router-link :to="'/hotSpring'">
+          <a href="javascrip:;" class="advert-border">
+            <img :src="item.imgUrl" />
+          </a>
+          </router-link>
+        </li>
     </ul>
 
     <div class="scenic">
       <h2>热销推荐</h2>
       <div class="place">
         <div class="place_item" v-for="item in place" :key='item.id'>
-        <router-link :to="'./detail/id' + item.id">
+        <router-link :to="'./detail'">
           <a href="javascript:;" class="place_wrap">
           <div class="img_wrap">
             <img :src="item.imgUrl">
